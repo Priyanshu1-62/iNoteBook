@@ -1,10 +1,11 @@
 import AlertContext from "./alertcontext";
 import AuthContext from "./authContext";
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function AuthState(props) {
   const host='http://localhost:5000';
+  const location=useLocation();
   const {handleAlert}=useContext(AlertContext);
   const [isAuthorized, setIsAuthorized]=useState(false);
   const [isLoading, setIsLoading]=useState(true);
@@ -168,7 +169,9 @@ function AuthState(props) {
     }
   }
   useEffect(()=>{
-    pageRefresh();
+    if(location.pathname!=="/" && location.pathname!=="/auth"){
+      pageRefresh();
+    }
   }, []);
   return (
     <AuthContext.Provider value={{isLoading, isAuthorized, signup, login, refresh, logout, rememberMe}}>

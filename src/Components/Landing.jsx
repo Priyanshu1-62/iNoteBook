@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Link } from "react-router";
 import Alert from './Alert'
 import AuthContext from '../Contexts/authContext';
 import { useNavigate } from 'react-router-dom';
@@ -19,12 +18,20 @@ function Landing() {
   return (
     <>
     <Alert/>
-    <div className="flex relative h-[30rem] ml-24">
-      <h1 className="mt-10 text-5xl font-extrabold text-stone-800">iNoteBook - your second brain</h1>
-      <button className="absolute flex bottom-0 right-25 cursor-pointer bg-[#151833] text-white font-bold px-3 py-2 border-4 border-cyan-900 rounded-xl hover:bg-[#2c2f4a] active:bg-[#1e2351]" onClick={handlestart}>
-        <h3>Get Started &nbsp;</h3>
-        <ArrowRight />
-      </button>
+    <div className="flex justify-center w-full">
+      <section className="flex flex-col relative mt-10 w-3/4 px-3 py-3 backdrop-blur-[30px]">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-stone-800 mb-7">iNoteBook - your second brain</h1>
+        <span className="text-lg md:text-xl mb-2">- Save your insights, Eureka moments and hot teas anytime, anywhere, from any device. </span>
+        <span className="text-lg md:text-xl mb-2">- Your notes are well secured via email&password authentication, password hashing, session handling and defence against timing attacks. </span>
+        <span className="text-lg md:text-xl mb-2">- Explore dark mode, create new Note super easily, get visual info of all your previous notes at one point, and edit/delete them as you please. </span>
+        <span className="text-lg md:text-xl mb-2">- For project infrastucture details or to report a bug, checkout Feedback section.. </span>
+        <div className="flex flex-row-reverse mt-3">
+          <button className="flex px-3 py-2 w-fit cursor-pointer bg-[#151833] text-white font-bold border-4 border-cyan-900 rounded-xl hover:bg-[#2c2f4a] active:bg-[#1e2351]" onClick={handlestart}>
+            <span className="">Get Started &nbsp;</span>
+            <ArrowRight />
+          </button>
+        </div>
+      </section>
     </div>
     </>
   )

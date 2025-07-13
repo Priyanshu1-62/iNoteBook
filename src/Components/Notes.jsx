@@ -37,6 +37,7 @@ function Notes() {
       if(response.ok){
         setaddingNote(false);
         setformDatas({ title: '', description: '', tag: '' });
+        handleAlert({ heading: "Success", message: "Note created successfully", colour: "green" });
         return;
       }
       const res=await response.json();
@@ -74,6 +75,7 @@ function Notes() {
       if(response.ok){
         setupdatingNote(false);
         setformDatas({ title: '', description: '', tag: '' });
+        handleAlert({ heading: "Success", message: "Note updated successfully", colour: "green" });
         return;
       }
       const res=await response.json();
@@ -104,7 +106,10 @@ function Notes() {
         await refresh();
         response=await deleteNote(id);
       }
-      if(response.ok) return;
+      if(response.ok){
+        handleAlert({ heading: "Success", message: "Note deleted successfully", colour: "green" });
+        return;
+      }
       const res=await response.json();
       if(response.status===401){
         handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
@@ -156,15 +161,28 @@ function Notes() {
   useEffect(()=>{
     handleGetNotes();
   }, []);
+  
+  //Disable scrolling while prompting
+  useEffect(()=>{
+    if(showPrompt){
+      document.body.style.overflow="hidden";
+    }
+    else{
+      document.body.style.overflow="auto";
+    }
+    return ()=>{
+      document.body.style.overflow="auto";
+    };
+  }, [showPrompt]);
   return (
     <>
     <div className={`${showPrompt ? "opacity-30" : ""}`}>
       <div className="mx-1">
         <div className="flex justify-center mt-0 w-full">
-          <h1 className="mx-1 mb-2 text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
+          <h1 className="mx-3 mb-2 text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
         </div>
         <div className="flex justify-end w-full mt-6">
-          <button disabled={addingNote} className={`flex mx-3 bg-[#003049] dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer active:bg-cyan-900"}`} onClick={handleAddNote
+          <button disabled={addingNote} className={`flex mx-3 bg-[#003049] dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer hover:bg-[#105479] active:bg-cyan-900 dark:hover:bg-yellow-600 dark:active:bg-yellow-700"}`} onClick={handleAddNote
           }>
             <FilePlus />
             <h3>&nbsp; New Note</h3>
@@ -194,7 +212,7 @@ function Notes() {
           </form>
         </div>
         {myNotes.length===0 && <div className="mx-6 my-3">
-          <h2 className="text-sm">No notes to display</h2>
+          <h2 className="text-sm text-black dark:text-amber-50">No notes to display</h2>
         </div>}
         {myNotes.length>0 && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {myNotes.map((element)=>{

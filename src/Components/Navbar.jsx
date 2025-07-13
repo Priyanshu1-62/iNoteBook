@@ -19,7 +19,6 @@ function Navbar() {
   const handleLogout = async ()=>{
     await logout();
   }
-  console.log(location.pathname);
   return (
     <>
     {location.pathname!=='/' && location.pathname!=='/auth' &&
@@ -31,10 +30,10 @@ function Navbar() {
 
           <ul className="hidden md:flex items-center">
               <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal hover:border-b-2 ${location.pathname==="/home"?"opacity-100 font-normal active:font-extralight":""}`} to='/home'>Home</Link>
-              <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal hover:border-b-2 ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>About</Link>
+              <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal hover:border-b-2 ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>Feedback</Link>
           </ul>
           <div className="w-full flex items-center justify-end">
-            <button className="hidden md:flex text-xs w-fit px-[0.9rem] py-[0.2rem] mr-5 rounded-3xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl" onClick= {handleLogout}>LOG OUT</button>
+            <button className="hidden md:flex text-xs w-fit px-[0.9rem] py-[0.2rem] mr-5 rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl" onClick= {handleLogout}>LOG OUT</button>
             <button className=" mr-7" onClick= {handletoggleMode}>
               {darkMode && <Sun className="w-6 h-6"/>}
               {!darkMode && <Moon className="w-6 h-6"/>}
@@ -46,9 +45,9 @@ function Navbar() {
       <div className={`flex flex-col divide-gray-500 relative top-12 w-full py-1 bg-[#7fa35f] dark:bg-[#3b345e] text-white md:hidden transition-all duration-300 ease-in-out overflow-hidden ${visibility ? "max-h-60 py-2 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
         <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/home"?"opacity-100 font-normal active:font-extralight":""}`} to='/home'>Home</Link>
         <hr></hr>
-        <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>About</Link>
+        <Link className={`mx-2 cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>Feedback</Link>
         <hr></hr>
-        <button className={`ml-1 mr-8 mt-2 mb-0 text-xs w-fit px-[0.5rem] py-[0.18rem] rounded-lg font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl `} onClick={handleLogout}>Log out</button>
+        <button className={`ml-1 mr-8 mt-2 mb-0 text-xs w-fit px-[0.7rem] py-[0.2rem] rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl `} onClick={handleLogout}>LOG OUT</button>
       </div>
     </>
     }

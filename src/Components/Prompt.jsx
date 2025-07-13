@@ -11,7 +11,7 @@ function Prompt(props) {
   }
   return (
     <>
-    <div className="absolute top-0 h-lvh w-lvw flex justify-center items-center">
+    <div className="fixed top-0 h-lvh w-lvw z-10 flex justify-center items-center">
         <div className="w-fit h-fit px-2 py-2 bg-white border-1 border-stone-700 dark:border-stone-300">
             <div className="flex justify-center items-center h-28 w-72">
                 <h3 className="text-lg">Are you sure to delete it?</h3>

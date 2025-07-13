@@ -1,6 +1,5 @@
 import React from 'react'
 import { HashRouter, Routes, Route } from "react-router";
-import Navbar from './Components/Navbar'
 import Landing from './Components/Landing';
 import Authorize from './Components/Authorize';
 import Home from './Components/Home';
@@ -18,7 +17,6 @@ function App() {
         <AuthState>
           <NoteState>
             <BgSetter/>
-            <Navbar/>
             <Routes>
               <Route path='/' element={<Landing/>} />
               <Route path='/auth' element={<Authorize/>} />

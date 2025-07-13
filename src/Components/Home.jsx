@@ -3,6 +3,7 @@ import Notes from './Notes'
 import Alert from './Alert'
 import AuthContext from '../Contexts/authContext';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function Home() {
   const { isLoading, isAuthorized }=useContext(AuthContext);
@@ -14,6 +15,7 @@ function Home() {
   }, [isLoading, isAuthorized]);
   return (
     <>
+    <Navbar/>
     <Alert/>
     <Notes/>
     </>
