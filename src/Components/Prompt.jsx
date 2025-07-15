@@ -17,8 +17,8 @@ function Prompt(props) {
                 <h3 className="text-lg">Are you sure to delete it?</h3>
             </div>
             <div className="flex flex-row-reverse mx-1">
-                <button className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-md py-1 px-7 ml-3" onClick={handleYes}>Yes</button>
-                <button className="bg-stone-600 hover:bg-stone-700 active:bg-stone-800 text-white rounded-md py-1 px-7" onClick={handleNo}>No</button>
+                <button className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-md py-1 px-7 ml-3 cursor-pointer" onClick={handleYes}>Yes</button>
+                <button className="bg-stone-600 hover:bg-stone-700 active:bg-stone-800 text-white rounded-md py-1 px-7 cursor-pointer" onClick={handleNo}>No</button>
             </div>
         </div>
     </div>

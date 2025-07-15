@@ -41,7 +41,7 @@ function LoginForm(props) {
   }
   return (
     <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="absolute top-[20vh] border-r-3 border-b-3 border-stone-600 rounded-xl backdrop-blur-[64px]">
+      <form onSubmit={handleSubmit} className="absolute top-[20vh] border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
         <div className="flex justify-center w-full h-5 mt-5 text-md font-extrabold text-gray-700">
           Welcome back!
         </div>
@@ -50,14 +50,14 @@ function LoginForm(props) {
         </div>
         <div className="relative flex mt-5 mb-3 mx-5">
           <input name="password" className="w-60 my-1 px-2 py-1 focus:outline-none border-b-2  text-sm placeholder:font-bold" type={passVisibility?"text":"password"} placeholder="Password"></input>
-          {!passVisibility && <button className="absolute top-2 right-1" onClick={handlepassVisibility}><Eye strokeWidth={2.7} size={20} className="text-gray-800"/></button>}
-          {passVisibility && <button className="absolute top-2 right-1" onClick={handlepassVisibility}><EyeOff strokeWidth={2.7} size={20} className="text-gray-800"/></button>}
+          {!passVisibility && <button className="absolute top-2 right-1 py-1 pl-1 cursor-pointer" onClick={handlepassVisibility}><Eye strokeWidth={2.7} size={20} className="text-gray-800"/></button>}
+          {passVisibility && <button className="absolute top-2 right-1 py-1 pl-1 cursor-pointer" onClick={handlepassVisibility}><EyeOff strokeWidth={2.7} size={20} className="text-gray-800"/></button>}
         </div>
         <div className="flex mb-4 mx-6">
-          <input name="rememberme" className="accent-amber-950" type="checkbox"></input>
+          <input name="rememberme" className="accent-amber-950 cursor-pointer" type="checkbox"></input>
           <h4 className="ml-1 text-sm text-gray-950">Remember me</h4>
         </div>
-        <button type="submit" className="backdrop-blur-[300px] text-sm w-60 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 hover:bg-stone-400 active:bg-stone-500 drop-shadow-xl">Login</button>
+        <button type="submit" className="backdrop-blur-[300px] cursor-pointer text-sm w-60 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 hover:bg-stone-400 active:bg-stone-500 drop-shadow-xl">Login</button>
         <div className="text-xs mx-5 mb-5 flex justify-center">
           Don't have an account?
           <button type="button" className="cursor-pointer underline underline-offset-4" onClick={handleClick}>Register</button>

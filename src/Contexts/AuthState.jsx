@@ -9,6 +9,7 @@ function AuthState(props) {
   const {handleAlert}=useContext(AlertContext);
   const [isAuthorized, setIsAuthorized]=useState(false);
   const [isLoading, setIsLoading]=useState(true);
+  const [loadingNotes, setLoadingNotes]=useState(false);
   const navigate=useNavigate();
   let accessToken;
   //SignUp
@@ -174,7 +175,7 @@ function AuthState(props) {
     }
   }, []);
   return (
-    <AuthContext.Provider value={{isLoading, isAuthorized, signup, login, refresh, logout, rememberMe}}>
+    <AuthContext.Provider value={{isLoading, isAuthorized, loadingNotes, setLoadingNotes, signup, login, refresh, logout, rememberMe}}>
         {props.children}
     </AuthContext.Provider>
   )
