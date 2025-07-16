@@ -21,10 +21,10 @@ function Landing() {
     <main className="flex justify-center items-center w-lvw h-lvh">
       <section className="flex flex-col relative w-3/4 px-3 py-3 backdrop-blur-[30px]">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-stone-800 mb-7">iNoteBook - your second brain</h1>
-        <p className="text-lg md:text-xl mb-2">- Save your insights, Eureka moments and hot teas anytime, anywhere, from any device. </p>
-        <p className="text-lg md:text-xl mb-2">- Your notes are well secured via email authentication, password hashing, session control and timing attack protection. </p>
-        <p className="text-lg md:text-xl mb-2">- Explore dark mode, create Notes super easily, and manage them with visual ease. </p>
-        <p className="text-lg md:text-xl mb-2">- For project infrastructure details or to report a bug, check out the Feedback section.. </p>
+        <p className="text-base md:text-lg mb-2">- Save your insights, Eureka moments and hot teas anytime, anywhere, from any device. </p>
+        <p className="text-base md:text-lg mb-2">- Your notes are well secured via email authentication, password hashing, session control and timing attack protection. </p>
+        <p className="text-base md:text-lg mb-2">- Explore dark mode, create Notes super easily, and manage them with visual ease. </p>
+        <p className="text-base md:text-lg mb-2">- For project infrastructure details or to report a bug, check out the Feedback section.. </p>
         <div className="flex flex-row-reverse mt-3">
           <button className="flex px-3 py-2 w-fit cursor-pointer bg-[#151833] text-white font-bold border-4 border-cyan-900 rounded-xl hover:bg-[#2c2f4a] active:bg-[#1e2351]" onClick={handlestart}>
             <p className="">Get Started &nbsp;</p>
@@ -33,6 +33,9 @@ function Landing() {
         </div>
       </section>
     </main>
+    <footer className="fixed bottom-2 flex justify-center w-lvw mx-2 text-sm md:text-base">
+    <p>Initially, the server may take 5–15 seconds to wake up. Thanks for your patience!</p>
+    </footer>
     </>
   )
 }

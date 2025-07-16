@@ -3,10 +3,11 @@ import AuthContext from '../Contexts/authContext';
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from 'lucide-react'
 import AlertContext from '../Contexts/alertcontext';
+import Spinner from './Spinner';
 
 function SignupForm(props) {
   const {setisLoggedin}=props;
-  const {signup}=useContext(AuthContext);
+  const {signup, loadingAuth}=useContext(AuthContext);
   const {handleAlert}=useContext(AlertContext);
   const navigate=useNavigate();
   const [passVisibility, setpassVisibility]=useState(false);
@@ -41,8 +42,9 @@ function SignupForm(props) {
     setpassVisibility(prev=>(!prev));
   }
   return (
-    <div className="flex justify-center">
-      <form onSubmit={handleSubmit} className="absolute top-[20vh] border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
+    <div className="flex flex-col justify-center items-center w-lvw h-[80vh] mt-7">
+      {loadingAuth && <Spinner />}
+      <form onSubmit={handleSubmit} className="h-fit w-fit border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
         <div className="flex justify-center w-full h-5 mt-5 text-md font-extrabold text-gray-700">
           Create an account!
         </div>

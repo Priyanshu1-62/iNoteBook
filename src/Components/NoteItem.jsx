@@ -13,7 +13,7 @@ function NoteItem(props) {
       <div className="flex justify-between items-center w-full mb-2 mx-1">
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold truncate text-gray-700 dark:text-amber-50 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">{note.title}</h2>
         <div className="flex pr-2 py-2 w-fit">
-          <Edit className="text-blue-600 dark:text-blue-300 mr-2 cursor-pointer" onClick={()=>{handleupdateNote(note._id, note)}}/>
+          <Edit className="text-blue-600 dark:text-blue-300 mr-4 cursor-pointer" onClick={()=>{handleupdateNote(note._id, note)}}/>
           <Trash2 className="text-red-600 dark:text-red-300 cursor-pointer" onClick={()=>{handleDeleteNote(note._id)}}/>
         </div>
       </div>
