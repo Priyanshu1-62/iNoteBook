@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Landing from './Components/Landing';
 import Authorize from './Components/Authorize';
 import Home from './Components/Home';
@@ -12,7 +12,7 @@ import BgSetter from './Components/BgSetter';
 function App() {
   return (
     <>
-    <HashRouter>
+    <BrowserRouter>
       <AlertState>
         <AuthState>
           <NoteState>
@@ -21,12 +21,12 @@ function App() {
               <Route path='/' element={<Landing/>} />
               <Route path='/auth' element={<Authorize/>} />
               <Route path='/home' element={<Home/>} />
-              <Route path='/about' element={<About/>} />
+              <Route path='/feedback' element={<About/>} />
             </Routes>
           </NoteState>
         </AuthState>
       </AlertState>
-    </HashRouter>
+    </BrowserRouter>
     </>
   )
 }

@@ -30,7 +30,7 @@ function Navbar() {
 
           <ul className="hidden md:flex items-center">
               <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/home"?"opacity-100 font-normal active:font-extralight":""}`} to='/home'>Home</Link>
-              <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>Feedback</Link>
+              <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/feedback"?"opacity-100 font-normal active:font-extralight":""}`} to='/feedback'>Feedback</Link>
           </ul>
           <div className="w-full flex items-center justify-end">
             <button className="hidden md:flex text-xs w-fit cursor-pointer px-[1rem] py-[0.3rem] mr-7 rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl" onClick= {handleLogout}>LOG OUT</button>
@@ -45,7 +45,7 @@ function Navbar() {
       <div className={`fixed top-12 z-40 flex flex-col divide-gray-500 w-full py-1 bg-[#7fa35f] dark:bg-[#3b345e] text-black dark:text-white md:hidden transition-all duration-300 ease-in-out overflow-hidden ${visibility ? "max-h-60 py-2 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
         <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/home"?"opacity-100 font-normal active:font-extralight":""}`} to='/home'>Home</Link>
         <hr></hr>
-        <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/about"?"opacity-100 font-normal active:font-extralight":""}`} to='/about'>Feedback</Link>
+        <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/feedback"?"opacity-100 font-normal active:font-extralight":""}`} to='/feedback'>Feedback</Link>
         <hr></hr>
         <button className={`ml-3 mr-8 mt-2 mb-0 cursor-pointer text-xs w-fit px-[1rem] py-[0.3rem] rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] hover:bg-[#7fa35f] dark:hover:bg-[#3b345e] drop-shadow-xl `} onClick={handleLogout}>LOG OUT</button>
       </div>
