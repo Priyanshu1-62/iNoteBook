@@ -34,7 +34,7 @@ function Landing() {
       </section>
     </main>
     <footer className="fixed bottom-2 flex justify-center w-lvw mx-2 text-sm md:text-base font-bold text-stone-800">
-    <p>The server may take 5–15 seconds to wake up. Thanks for your patience!</p>
+    <p>The server may take up to a minute to wake up. Thanks for your patience!</p>
     </footer>
     </>
   )

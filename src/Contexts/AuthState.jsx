@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function AuthState(props) {
-  const host='http://localhost:5000';
+  const host=import.meta.env.VITE_BACKEND_URL;
   const location=useLocation();
   const {handleAlert}=useContext(AlertContext);
   const [isAuthorized, setIsAuthorized]=useState(false);
@@ -145,6 +145,9 @@ function AuthState(props) {
       });
       const clone=response.clone();
       if(response.ok){
+        const res=await response.json();
+        accessToken=res.accessToken;
+        localStorage.setItem("accessToken", accessToken);
         handleAlert({ heading: "Hii", message: "We still remember you :)", colour: "green" });
         setIsAuthorized(true);
       }

@@ -2,7 +2,7 @@ import NoteContext from "./noteContext";
 import React, {  useState } from "react";
 
 function NoteState(props) {
-  const host='http://localhost:5000';
+  const host=import.meta.env.VITE_BACKEND_URL;
   const fetchedNotes=[];
   const [myNotes, setmyNotes]=useState(fetchedNotes);
   //Create
