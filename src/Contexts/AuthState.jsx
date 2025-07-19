@@ -4,19 +4,20 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function AuthState(props) {
-  const host=import.meta.env.VITE_BACKEND_URL;
+  const host='http://localhost:5000';
   const location=useLocation();
   const {handleAlert}=useContext(AlertContext);
   const [isAuthorized, setIsAuthorized]=useState(false);
   const [isLoading, setIsLoading]=useState(true);
   const [loadingNotes, setLoadingNotes]=useState(false);
   const [loadingAuth, setLoadingAuth]=useState(false);
+  const [loadingLanding, setLoadingLanding]=useState(false);
+  const [loadingExit, setLoadingExit]=useState(false);
   const navigate=useNavigate();
   let accessToken;
   //SignUp
   const signup = async (data)=>{
     try {
-      setLoadingAuth(true);
       const response=await fetch(`${host}/api/auth/createUser`, {
         method: "POST",
         credentials: "include",
@@ -38,7 +39,6 @@ function AuthState(props) {
         if(response.status===500) handleAlert({ heading: "Oops!!", message: res.errors, colour: "yellow" });
         else handleAlert({ heading: "Invalid Input", message: res.errors, colour: "red" });
       }
-      setLoadingAuth(false);
       return clone;
     } 
     catch (error) {
@@ -49,7 +49,6 @@ function AuthState(props) {
   //Login
   const login = async (data)=>{
     try {
-      setLoadingAuth(true);
       const response=await fetch(`${host}/api/auth/login`, {
         method: "POST",
         credentials: "include",
@@ -71,7 +70,6 @@ function AuthState(props) {
         if(response.status===500) handleAlert({ heading: "Oops!!", message: res.errors, colour: "yellow" });
         else handleAlert({ heading: "Invalid Credentials", message: res.errors, colour: "red" });
       }
-      setLoadingAuth(false);
       return clone;
     } 
     catch (error) {
@@ -112,6 +110,7 @@ function AuthState(props) {
   //Logout
   const logout = async ()=>{
     try {
+      setLoadingExit(true);
       const response=await fetch(`${host}/api/auth/logout`, {
         method: "POST",
         credentials: "include",
@@ -124,6 +123,7 @@ function AuthState(props) {
         handleAlert({ heading: "Success", message: "Logout Successful", colour: "green" });
       }
       setIsAuthorized(false);
+      setLoadingExit(false);
       localStorage.removeItem("accessToken");
       navigate('/auth');
       return clone;
@@ -183,7 +183,7 @@ function AuthState(props) {
     }
   }, []);
   return (
-    <AuthContext.Provider value={{isLoading, isAuthorized, loadingNotes, loadingAuth, setLoadingNotes, signup, login, refresh, logout, rememberMe}}>
+    <AuthContext.Provider value={{loadingExit, isLoading, isAuthorized, loadingNotes, loadingAuth, loadingLanding, setLoadingLanding, setLoadingAuth, setLoadingNotes, signup, login, refresh, logout, rememberMe}}>
         {props.children}
     </AuthContext.Provider>
   )

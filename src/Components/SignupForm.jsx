@@ -7,13 +7,14 @@ import Spinner from './Spinner';
 
 function SignupForm(props) {
   const {setisLoggedin}=props;
-  const {signup, loadingAuth}=useContext(AuthContext);
+  const {signup, loadingAuth, setLoadingAuth}=useContext(AuthContext);
   const {handleAlert}=useContext(AlertContext);
   const navigate=useNavigate();
   const [passVisibility, setpassVisibility]=useState(false);
 
   const handleSubmit = async (e)=>{
     try {
+      setLoadingAuth(true);
       e.preventDefault();
       const form=e.target;
       const formData=new FormData(form);
@@ -27,6 +28,7 @@ function SignupForm(props) {
       if(rememberme) localStorage.setItem("rememberme", 'true');
   
       const response=await signup(signupdata);
+      setLoadingAuth(false);
       if(response.ok){
         navigate("/home");
       }
@@ -42,9 +44,8 @@ function SignupForm(props) {
     setpassVisibility(prev=>(!prev));
   }
   return (
-    <div className="flex flex-col justify-center items-center w-lvw h-[80vh] mt-7">
-      {loadingAuth && <Spinner />}
-      <form onSubmit={handleSubmit} className="h-fit w-fit border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
+    <div className="flex flex-col justify-center items-center w-lvw h-lvh mt-7">
+      <form onSubmit={handleSubmit} className="relative h-fit w-fit border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
         <div className="flex justify-center w-full h-5 mt-5 text-md font-extrabold text-gray-700">
           Create an account!
         </div>
@@ -67,6 +68,9 @@ function SignupForm(props) {
         <div className="text-xs mx-5 mb-5 flex justify-center">
           Already have an account?
           <button type="button" className="cursor-pointer underline underline-offset-4" onClick={handleClick}>Login</button>
+        </div>
+        <div className="absolute -top-20 w-full">
+          {loadingAuth && <Spinner />}
         </div>
       </form>
     </div>

@@ -18,10 +18,10 @@ function About() {
   return (
     <>
     <Navbar/>
-    <div className="flex justify-center w-full mt-40">
-      <section className="w-3/4 text-black dark:text-amber-50 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">
+    <div className="flex justify-center w-full mt-24 md:mt-40">
+      <section className="w-4/5 md:w-3/4 text-black dark:text-amber-50 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">
         <div>
-          <h1 className="mb-8 w-fit text-2xl md:text-3xl lg:text-4xl border-b-4 border-double border-stone-600 dark:border-amber-50">Let me know what you think</h1>
+          <h1 className="mb-5 w-fit text-2xl md:text-3xl lg:text-4xl border-b-4 border-double border-stone-600 dark:border-amber-50">Let me know what you think</h1>
         </div>
         <div>
           <div className="flex gap-2 mb-2">

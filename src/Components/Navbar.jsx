@@ -3,10 +3,11 @@ import { Link } from "react-router";
 import AuthContext from '../Contexts/authContext';
 import { useLocation } from 'react-router-dom';
 import { Sun, Moon } from 'lucide-react';
+import Spinner from './Spinner';
 
 function Navbar() {
   const location=useLocation();
-  const {logout}=useContext(AuthContext);
+  const {logout, loadingExit}=useContext(AuthContext);
   const [visibility, setvisibility]=useState(false);
   const [darkMode, setdarkMode]=useState(false);
   const handletoggleMode = ()=>{
@@ -23,6 +24,9 @@ function Navbar() {
     <>
     {location.pathname!=='/' && location.pathname!=='/auth' &&
     <>
+    {loadingExit && <div className="fixed flex items-center w-lvw h-lvh">
+      <Spinner />
+    </div>}
       <div className="h-1 bg-[#8d99ae]"></div>
 
       <nav className={`fixed top-0 z-40 flex items-center w-full p-3 bg-[#b5e48c] dark:bg-[#5e548e] text-black dark:text-white ${visibility ? "" : "shadow-2xl shadow-[#1a1c2c]"}`}>

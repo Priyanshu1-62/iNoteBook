@@ -26,9 +26,14 @@ function Notes() {
   const handleAddNote = ()=>{
     if(addingNote || updatingNote || showPrompt) return;
     setaddingNote(true);
+
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
   }
   const handleCreateBtn = async (e)=>{
     try {
+      setLoadingNotes(true);
       e.preventDefault();
       let response=await addNote(formDatas);
       if(response.status===401){
@@ -36,12 +41,14 @@ function Notes() {
         response=await addNote(formDatas);
       }
       if(response.ok){
+        setLoadingNotes(false);
         setaddingNote(false);
         setformDatas({ title: '', description: '', tag: '' });
         handleAlert({ heading: "Success", message: "Note created successfully", colour: "green" });
         return;
       }
       const res=await response.json();
+      setLoadingNotes(false);
       if(response.status===401){
         handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
         await logout();
@@ -67,6 +74,7 @@ function Notes() {
   }
   const handleUpdateBtn = async (e)=>{
     try {
+      setLoadingNotes(true);
       e.preventDefault();
       let response=await editNote(idRef.current, formDatas);
       if(response.status===401){
@@ -74,12 +82,14 @@ function Notes() {
         response=await editNote(idRef.current, formDatas);
       }
       if(response.ok){
+        setLoadingNotes(false);
         setupdatingNote(false);
         setformDatas({ title: '', description: '', tag: '' });
         handleAlert({ heading: "Success", message: "Note updated successfully", colour: "green" });
         return;
       }
       const res=await response.json();
+      setLoadingNotes(false);
       if(response.status===401){
         handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
         await logout();
@@ -101,6 +111,7 @@ function Notes() {
   }
   const handleDeleteAfterConfirm = async ()=>{
     try {
+      setLoadingNotes(true);
       const id=idRef.current;
       let response=await deleteNote(id);
       if(response.status===401){
@@ -108,10 +119,12 @@ function Notes() {
         response=await deleteNote(id);
       }
       if(response.ok){
+        setLoadingNotes(false);
         handleAlert({ heading: "Success", message: "Note deleted successfully", colour: "green" });
         return;
       }
       const res=await response.json();
+      setLoadingNotes(false);
       if(response.status===401){
         handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
         await logout();
@@ -182,6 +195,9 @@ function Notes() {
   }, [showPrompt]);
   return (
     <>
+    {loadingNotes && <div className="fixed flex items-center w-lvw h-lvh">
+      <Spinner />
+    </div>}
     <div className={`${showPrompt ? "opacity-30" : ""} mx-1`}>
       <div className="flex justify-center mt-28 w-full">
         <h1 className="mx-3 mb-2 text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
@@ -216,7 +232,6 @@ function Notes() {
           </div>
         </form>
       </div>
-      {loadingNotes && <Spinner/>}
       {!loadingNotes &&
       <>
       {myNotes.length===0 && <div className="mx-6 my-3">
