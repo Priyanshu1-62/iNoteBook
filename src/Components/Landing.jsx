@@ -40,7 +40,7 @@ function Landing() {
         </div>}
       </section>
     </main>
-    <footer className="absolute bottom-2 mx-2 text-sm md:text-base font-bold text-stone-800">
+    <footer className="absolute bottom-2 justify-center w-full mx-2 text-sm md:text-base font-bold text-stone-800">
         <p>The server may take up to a minute to wake up. Thanks for your patience!</p>
       </footer>
     </>
