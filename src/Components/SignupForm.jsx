@@ -44,7 +44,7 @@ function SignupForm(props) {
     setpassVisibility(prev=>(!prev));
   }
   return (
-    <div className="flex flex-col justify-center items-center w-lvw h-lvh mt-7">
+    <div className="flex flex-col justify-center items-center w-lvw h-lvh">
       <form onSubmit={handleSubmit} className="relative h-fit w-fit border-r-3 border-b-3 border-stone-600 rounded-xl caret-pink-800 selection:bg-pink-600 backdrop-blur-[64px]">
         <div className="flex justify-center w-full h-5 mt-5 text-md font-extrabold text-gray-700">
           Create an account!
@@ -69,7 +69,7 @@ function SignupForm(props) {
           Already have an account?
           <button type="button" className="cursor-pointer underline underline-offset-4" onClick={handleClick}>Login</button>
         </div>
-        <div className="absolute -top-20 w-full">
+        <div className="absolute -top-14 w-full">
           {loadingAuth && <Spinner />}
         </div>
       </form>

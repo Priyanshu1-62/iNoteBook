@@ -210,8 +210,8 @@ function Notes() {
         </button>
       </div>
       <div className="h-fit flex justify-center my-3">
-        <form ref={formRef} onSubmit={updatingNote?handleUpdateBtn:handleCreateBtn} className={`relative dark:bg-[#000814] border-2 border-stone-700 dark:border-stone-400 rounded-xl transition-all duration-300 ease-in overflow-hidden ${(addingNote || updatingNote) ? "max-h-fit opacity-100" : "max-h-0 opacity-0"}`}>
-          <button type="button" className="absolute top-1 right-1 px-1 py-1 cursor-pointer" onClick={handleCross}>
+        <form ref={formRef} onSubmit={updatingNote?handleUpdateBtn:handleCreateBtn} className={`relative dark:bg-[#000814]/7 border-2 border-stone-700 dark:border-stone-400 rounded-xl transition-all duration-300 ease-in overflow-hidden ${(addingNote || updatingNote) ? "max-h-fit opacity-100" : "max-h-0 opacity-0"}`}>
+          <button disabled={loadingNotes} type="button" className="absolute top-1 right-1 px-1 py-1 cursor-pointer" onClick={handleCross}>
             &#10060;
           </button>
           <div className="flex justify-center w-full h-5 mt-13 ml-2 mr-4 text-md font-extrabold text-gray-700 dark:text-amber-50">
@@ -237,7 +237,7 @@ function Notes() {
       {myNotes.length===0 && <div className="mx-6 my-3">
         <h2 className="text-sm text-black dark:text-amber-50">No notes to display</h2>
       </div>}
-      {myNotes.length>0 && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      {myNotes.length>0 && <div className="grid grid-cols-1 lg:grid-cols-2">
         {myNotes.map((element)=>{
           return <NoteItem key={element._id} note={element} handleupdateNote={handleupdateNote} handleDeleteNote={handleDeleteNote}></NoteItem>
         })}

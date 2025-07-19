@@ -20,11 +20,12 @@ function Landing() {
     if(response.ok) navigate('/home');
     else navigate('/auth');
   }
+  // flex justify-center mt-20 sm:mt-36 md:mt-44
   return (
     <>
     <Alert/>
-    <main className="flex justify-center items-center w-lvw h-lvh">
-      <section className="relative flex flex-col w-4/5 md:w-3/4 px-3 py-3 mt- backdrop-blur-[30px]">
+    <main className="flex flex-col justify-center items-center w-lvw h-lvh">
+      <section className="relative flex flex-col w-4/5 md:w-3/4 px-3 py-3 backdrop-blur-[64px]">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-stone-800 mb-7">iNoteBook - your second brain</h1>
         <p className="text-base md:text-lg mb-2">- Save your insights, Eureka moments and hot teas anytime, anywhere, from any device. </p>
         <p className="text-base md:text-lg mb-2">- Explore dark mode, create Notes super easily, and manage them with visual ease. </p>
@@ -35,14 +36,14 @@ function Landing() {
             <ArrowRight />
           </button>
         </div>
-        {loadingLanding && <div className="absolute -top-20 w-full">
+        {loadingLanding && <div className="absolute -top-14 w-full">
           <Spinner />
         </div>}
       </section>
-    </main>
-    <footer className="absolute bottom-2 justify-center w-full mx-2 text-sm md:text-base font-bold text-stone-800">
-        <p>The server may take up to a minute to wake up. Thanks for your patience!</p>
+      <footer className="absolute bottom-2 flex justify-center w-full mx-2 text-sm md:text-base font-bold text-stone-800">
+          <p>The server may take up to a minute to wake up. Thanks for your patience!</p>
       </footer>
+    </main>
     </>
   )
 }
