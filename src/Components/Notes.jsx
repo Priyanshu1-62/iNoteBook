@@ -226,7 +226,7 @@ function Notes() {
           <div className="my-5 mx-5">
             <input name="tag" value={formDatas.tag} onChange={(e)=> setformDatas(prev=>({...prev, tag:e.target.value})) } className="w-75 md:w-120 my-1 px-2 py-1 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 focus:outline-none border-b-1 dark:border-white text-sm text-black dark:text-amber-50 placeholder:font-bold placeholder:opacity-55 placeholder:text-black dark:placeholder:text-white" type="text" placeholder="Tag (min 3 chars)"></input>
           </div>
-          <button type="submit" className="text-xs text-black dark:text-amber-50 w-75 md:w-120 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold cursor-pointer border-1 border-stone-500 dark:border-stone-300 bg-stone-300 hover:bg-stone-400 active:bg-stone-500 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-700 drop-shadow-xl">{updatingNote?`Update` : `Create`}</button>
+          <button type="submit" disabled={loadingNotes && (addingNote || updatingNote)} className={`text-xs text-black dark:text-amber-50 w-75 md:w-120 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 dark:border-stone-300 bg-stone-300 dark:bg-stone-500 drop-shadow-xl ${loadingNotes && (addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"cursor-pointer hover:bg-stone-400 active:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-700"}`}>{updatingNote?`Update` : `Create`}</button>
           <div className="flex justify-center text-xs text-black dark:text-amber-50 mx-5 mb-5">
             {updatingNote?`Updated note will remain in its original position.` : `New note will appear at the end of the list`}
           </div>
