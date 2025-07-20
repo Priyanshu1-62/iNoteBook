@@ -195,7 +195,7 @@ function Notes() {
   }, [showPrompt]);
   return (
     <>
-    {loadingNotes && <div className="fixed flex items-center w-lvw h-lvh">
+    {loadingNotes && (!addingNote) && (!updatingNote) && <div className="fixed flex items-center w-lvw h-lvh">
       <Spinner />
     </div>}
     <div className={`${showPrompt ? "opacity-30" : ""} mx-1`}>
@@ -210,7 +210,7 @@ function Notes() {
         </button>
       </div>
       <div className="h-fit flex justify-center my-3">
-        <form ref={formRef} onSubmit={updatingNote?handleUpdateBtn:handleCreateBtn} className={`relative dark:bg-[#000814]/7 border-2 border-stone-700 dark:border-stone-400 rounded-xl transition-all duration-300 ease-in overflow-hidden ${(addingNote || updatingNote) ? "max-h-fit opacity-100" : "max-h-0 opacity-0"}`}>
+        <form ref={formRef} onSubmit={updatingNote?handleUpdateBtn:handleCreateBtn} className={`relative dark:bg-[#000814] border-2 border-stone-700 dark:border-stone-400 rounded-xl transition-all duration-300 ease-in overflow-hidden ${(addingNote || updatingNote) ? "max-h-fit opacity-100" : "max-h-0 opacity-0"}`}>
           <button disabled={loadingNotes} type="button" className="absolute top-1 right-1 px-1 py-1 cursor-pointer" onClick={handleCross}>
             &#10060;
           </button>
@@ -228,8 +228,11 @@ function Notes() {
           </div>
           <button type="submit" className="text-xs text-black dark:text-amber-50 w-75 md:w-120 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold cursor-pointer border-1 border-stone-500 dark:border-stone-300 bg-stone-300 hover:bg-stone-400 active:bg-stone-500 dark:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-700 drop-shadow-xl">{updatingNote?`Update` : `Create`}</button>
           <div className="flex justify-center text-xs text-black dark:text-amber-50 mx-5 mb-5">
-          {updatingNote?`Updated note will remain in its original position.` : `New note will appear at the end of the list`}
+            {updatingNote?`Updated note will remain in its original position.` : `New note will appear at the end of the list`}
           </div>
+          {loadingNotes && (addingNote || updatingNote) &&<div className="absolute top-40 w-full">
+          <Spinner />
+          </div>}
         </form>
       </div>
       {!loadingNotes &&
