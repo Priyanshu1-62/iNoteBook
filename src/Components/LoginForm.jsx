@@ -60,7 +60,7 @@ function LoginForm(props) {
           <input name="rememberme" className="accent-amber-950 cursor-pointer" type="checkbox"></input>
           <h4 className="ml-1 text-sm text-gray-950">Remember me</h4>
         </div>
-        <button type="submit" className="backdrop-blur-[300px] cursor-pointer text-sm w-60 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 hover:bg-stone-400 active:bg-stone-500 drop-shadow-xl">Login</button>
+        <button type="submit" disabled={loadingAuth} className={`backdrop-blur-[300px] text-xs w-60 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 drop-shadow-xl ${loadingAuth?"opacity-70 cursor-not-allowed":"cursor-pointer hover:bg-stone-400 active:bg-stone-500"}`}>Login</button>
         <div className="text-xs mx-5 mb-5 flex justify-center">
           Don't have an account?
           <button type="button" className="cursor-pointer underline underline-offset-4" onClick={handleClick}>Register</button>

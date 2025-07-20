@@ -31,7 +31,7 @@ function Landing() {
         <p className="text-base md:text-lg mb-2">- Explore dark mode, create Notes super easily, and manage them with visual ease. </p>
         <p className="text-base md:text-lg mb-2">- For project infrastructure details or to report a bug, check out the Feedback section.. </p>
         <div className="flex flex-row-reverse mt-3">
-          <button className="flex px-3 py-2 md:px-3 md:py-2 w-fit cursor-pointer bg-[#151833] text-white font-bold border-4 border-cyan-900 rounded-xl hover:bg-[#2c2f4a] active:bg-[#1e2351]" onClick={handlestart}>
+          <button disabled={loadingLanding} className={`flex px-3 py-2 md:px-3 md:py-2 w-fit bg-[#151833] text-white font-bold border-4 border-cyan-900 rounded-xl ${loadingLanding?"opacity-50 cursor-not-allowed":"opacity-100 hover:bg-[#2c2f4a] active:bg-[#1e2351] cursor-pointer"}`} onClick={handlestart}>
             <p className="text-sm md:text-base">Get Started &nbsp;</p>
             <ArrowRight />
           </button>
