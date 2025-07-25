@@ -44,7 +44,7 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 📎 Related Repositories
-- Frontend: [iNoteBook Frontend](https://github.com/Priyanshu1-62/iNoteBook.git)
+- Frontend: [iNoteBook Backend](https://github.com/Priyanshu1-62/iNoteBook-Server.git)
 ---
 
 ## 📛 Badges Credit
