@@ -12,19 +12,29 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 - [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 ---
 
-### 🗺️ Backend architecture overview
+### 🗺️ Overview
+- Include folder structure info
+- Include env variables usage
 
 ---
 
-### 🔐 Authentication & Security
+### 🧠 State Management
 
 ---
 
-### 🧪 API Design & Routing
+### 🔁 Routing
 
 ---
 
-### 📦 CRUD operations and Data Management
+### 📡 API Integration
+
+---
+
+### 🪝 React Hooks
+
+---
+
+### 💅 Styling & UX
 
 ---
 
