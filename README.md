@@ -13,19 +13,17 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 🗺️ Overview
-- iNoteBook is your everyday companion for noting insights, to recollect inspirations, to reflect on stored past Eureka moments, and to save hot teas for future gossips !!
-- 
-- Include folder structure info
-- Include env variables usage
-
+- iNoteBook is a fully responsive, Vite powered MERN-stack project designed to be your everyday companion for jotting down insights, to recollect inspirations, to reflect on stored Eureka moments, or to preserve hot teas for future gossips !!
+- The project follows modular file structure, organized React-components, maintainable and scalable flow of state variables using Context-API, thoughtful user interactions, lucid icons, and comes with Dark mode.
 ---
 
 ### 🧠 State Management
-
+- The project required certain vaiables to be accessible across all React-components. While this can be technically achieved by prop drilling, it would lead to cluttered folder structure and reduced scalability. It would be combursome to add a few more such accessible variables.
+- To tacle this, context API is used. Based on the responsibilities, 3 context providers are created - for Authorization, Notes management, Alert management. These contexts envelpoes rest of the app tree to make the necessary variables and functions easily accessible throughout the app.
 ---
 
 ### 🔁 Routing
-
+- 
 ---
 
 ### 📡 API Integration
