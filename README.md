@@ -13,6 +13,8 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 🗺️ Overview
+- iNoteBook is your everyday companion for noting insights, to recollect inspirations, to reflect on stored past Eureka moments, and to save hot teas for future gossips !!
+- 
 - Include folder structure info
 - Include env variables usage
 
