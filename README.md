@@ -20,14 +20,15 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ### 🧠 State Management
 - The project required certain vaiables to be accessible across all React-components. While this can be technically achieved by prop drilling, it would lead to cluttered folder structure and reduced scalability. It would be combursome to add a few more such accessible variables.
 - To tacle this, context API is used. Based on the responsibilities, 3 context providers are created - for Authorization, Notes management, Alert management. These contexts envelpoes rest of the app tree to make the necessary variables and functions easily accessible throughout the app.
+- The state variables are responsible for authorized entry, restricted notes manipulation, loading spinner management, and to show visually informative Alerts.
 ---
 
-### 🔁 Routing
-- 
----
-
-### 📡 API Integration
-
+### 📡 API Integration and Routing
+- Fetch-API is used for all Client-to-server communication. Authentication and authorization management routing funcitons include: Signup, Login, Remember me, Logout, Refreshing the session token. Notes management routing functions include: Create, Read, Update, Delete (CRUD) notes.
+- To handle expired sessions seamlessly, without need of Logout and re-Login, a refresh mechanism is used in notes management routing functions. This mechanism catches server response status before updating user interface. If the status implies "Session expired", then it tries to renew the session and retries the original request.
+- Dynamic routing is incoorporated to include Notes ID into route params for Updating and Deleting notes.
+- All routes include structured response handling with consistent and clear Alert messeges for meaningful UI feedback.
+- Session tokens are stored in Local storage to persist user sessions across page reloads. The token is later retrived and integrated in request body by routing functions. Since data in local storage is vulnerable to XSS attacks, a system of access and refresh token is used. Access tokens are responsible for authorization and have short life-span, thus reducing the damange window if stolen. Refresh tokens, with longer validity period, are responsible for renewing access tokens periodically and are securely kept in HTTP-only cookies. Read more about it in Authentication and Security section present in Backend repository of this project.
 ---
 
 ### 🪝 React Hooks
