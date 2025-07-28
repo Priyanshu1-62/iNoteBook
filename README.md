@@ -32,13 +32,13 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 🪝 React Hooks
- <h4>Here is a list of React hooks and their respective roles in the project:</h4>
+ Here is a list of React hooks and their respective roles in the project:
  - __useState:__  Manages component-level state and triggers re-render in response to user interactions.
- -  __useEffeect:__ Its first major application is to handle user's manual page refresh. Second major role is to load and delete necessary Notes on relevent renders.
+ - __useEffeect:__ Its first major application is to handle user's manual page refresh. Second major role is to load and delete necessary Notes on relevent renders.
  - __useLocation:__ Helps in conditionally rendering components such as Navbar based on current route.
  - __useNavigate:__ To redirect user on actions such as Signup, Login, Logout.
-- __useContext:__ Used in Context API for make certain variables and functiions available across multiple components.
-- __useRef:__ To create variables that retain their values between renders, like state variables, but does not trigger re-render on value update, like normal variable. In this project, it is used to store DOM references and IDs.
+ - __useContext:__ Used in Context API for make certain variables and functiions available across multiple components.
+ - __useRef:__ To create variables that retain their values between renders, like state variables, but does not trigger re-render on value update, like normal variable. In this project, it is used to store DOM references and IDs.
 ---
 
 ### 💅 Styling & UX
