@@ -13,7 +13,7 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 🗺️ Overview
-- iNoteBook is a fully responsive, Vite powered MERN-stack project designed to be your everyday companion for jotting down insights, to recollect inspirations, to reflect on stored Eureka moments, or to preserve hot teas for future gossips !!
+- iNoteBook is a fully responsive, Vite powered MERN-stack project designed to be your everyday companion for jotting down insights, to recollect inspirations and Eureka moments, or to preserve hot teas for future gossips !!
 - __💅 Styling and UX:__ Tailwind CSS, a utility-first framework, is used for designing responsive, mobile-friendly layouts. Other notable features include:
   - Fully integrated dark theme
   - Minimalist, clean and uncluttered UI
