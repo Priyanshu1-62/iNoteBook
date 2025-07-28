@@ -28,11 +28,17 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 - To handle expired sessions seamlessly, without need of Logout and re-Login, a refresh mechanism is used in notes management routing functions. This mechanism catches server response status before updating user interface. If the status implies "Session expired", then it tries to renew the session and retries the original request.
 - Dynamic routing is incoorporated to include Notes ID into route params for Updating and Deleting notes.
 - All routes include structured response handling with consistent and clear Alert messeges for meaningful UI feedback.
-- Session tokens are stored in Local storage to persist user sessions across page reloads. The token is later retrived and integrated in request body by routing functions. Since data in local storage is vulnerable to XSS attacks, a system of access and refresh token is used. Access tokens are responsible for authorization and have short life-span, thus reducing the damange window if stolen. Refresh tokens, with longer validity period, are responsible for renewing access tokens periodically and are securely kept in HTTP-only cookies. Read more about it in Authentication and Security section present in Backend repository of this project.
+- Session tokens are stored in Local storage to persist user sessions across page reloads. The token is later retrived and integrated in request body by routing functions. Since data in local storage is vulnerable to XSS attacks, a system of access and refresh token is used. Access tokens are responsible for authorization and have short life-span, thus reducing the damange window if stolen. Refresh tokens, with longer validity period, are responsible for renewing access tokens periodically and are securely kept in HTTP-only cookies. Read more about it in Authentication and Security section present in [Backend repository](https://github.com/Priyanshu1-62/iNoteBook-Server.git) of this project.
 ---
 
 ### 🪝 React Hooks
-
+ <h4>Here is a list of React hooks and their respective roles in the project:</h4>
+ - __useState:__  Manages component-level state and triggers re-render in response to user interactions.
+ -  __useEffeect:__ Its first major application is to handle user's manual page refresh. Second major role is to load and delete necessary Notes on relevent renders.
+ - __useLocation:__ Helps in conditionally rendering components such as Navbar based on current route.
+ - __useNavigate:__ To redirect user on actions such as Signup, Login, Logout.
+- __useContext:__ Used in Context API for make certain variables and functiions available across multiple components.
+- __useRef:__ To create variables that retain their values between renders, like state variables, but does not trigger re-render on value update, like normal variable. In this project, it is used to store DOM references and IDs.
 ---
 
 ### 💅 Styling & UX
