@@ -25,6 +25,15 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
   - For authorized access to protected resources and protection against XSS attacks, a system of JSON web-tokens (JWTs) is used. User input is sanitized and validated before further processing.
 ---
 
+![Home-mobile-light](./public/Landing-desktop.png)
+
+<p align="center">
+  <img src="./public/Home-mobile-light.png" alt="Home-mobile-light" width="45%" />
+  <img src="./public/Home-ipad-light.png" alt="Home-ipad-light" width="45%" />
+</p>
+
+![Home-mobile-light](./public/Home-desktop-dark.png)
+
 ### 🧠 State Management
 - The project required certain vaiables to be accessible across all React-components. While this can be technically achieved by prop drilling, it would lead to cluttered folder structure and reduced scalability. It would be combursome to add a few more such global variables and functions.
 - To tacle this, context API is used. Based on the responsibilities, 3 context providers are created - for Authorization, Notes management, Alert management. These contexts envelpoes rest of the app tree to make the necessary variables and functions easily accessible throughout the app.
