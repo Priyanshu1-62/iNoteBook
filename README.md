@@ -14,7 +14,15 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 
 ### 🗺️ Overview
 - iNoteBook is a fully responsive, Vite powered MERN-stack project designed to be your everyday companion for jotting down insights, to recollect inspirations, to reflect on stored Eureka moments, or to preserve hot teas for future gossips !!
-- The project follows modular file structure, organized React-components, maintainable and scalable flow of state variables using Context-API, thoughtful user interactions, lucid icons, and comes with Dark mode.
+- __💅 Styling and UX:__ Tailwind CSS, a utility-first framework, is used for designing responsive, mobile-friendly layouts. Other notable features include:
+  - Fully integrated dark theme
+  - Minimalist, clean and uncluttered UI
+  - Alert and Loading spinner system
+  - Smooth transitions
+  - Disabled button feedback
+- __🧱 Structure and Security:__
+  - The project follows modular file structure, organized React-components, maintainable and scalable flow of state variables using Context-API, thoughtful user interactions and lucid icons.
+  - For authorized access to protected resources and protection against XSS attacks, a system of JSON web-tokens (JWTs) is used. User input is sanitized and validated before further processing.
 ---
 
 ### 🧠 State Management
@@ -39,10 +47,6 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
  - __useNavigate:__ To redirect user on actions such as Signup, Login, Logout.
  - __useContext:__ Used in Context API for make certain variables and functiions available across multiple components.
  - __useRef:__ To create variables that retain their values between renders, like state variables, but does not trigger re-render on value update, like normal variable. In this project, it is used to store DOM references and IDs.
----
-
-### 💅 Styling & UX
-
 ---
 
 ### 🌍 Deployment
