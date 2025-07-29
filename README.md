@@ -25,10 +25,10 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
   - For authorized access to protected resources and protection against XSS attacks, a system of JSON web-tokens (JWTs) is used. User input is sanitized and validated before further processing.
 ---
 
-![Home-mobile-light](./public/Landing-desktop.png)
+![Landing-desktop](./public/Landing-desktop.png)
 
 <p align="center">
-  <img src="./public/Home-mobile-light.png" alt="Home-mobile-light" width="45%" />
+  <img src="./public/Signup-mobile-light.png" alt="Signup-mobile-light" width="45%" />
   <img src="./public/Home-ipad-light.png" alt="Home-ipad-light" width="45%" />
 </p>
 
