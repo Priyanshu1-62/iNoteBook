@@ -12,6 +12,24 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 - [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 ---
 
+### ⚙️ Setup
+1) Installation:
+   - git clone https://github.com/Priyanshu1-62/iNoteBook.git
+   - cd iNoteBook
+   - npm install
+2) Environment Variables: <br>
+   Create a .env file in the project root with (Update the port if your backend runs on a different one):
+   - VITE_BACKEND_URL=http://localhost:5000
+3) Backend SEtup:
+   - Follow steps in [iNoteBook Backend](https://github.com/Priyanshu1-62/iNoteBook-Server.git) repo.
+4) Run Frontend:
+   - npm run dev
+---
+
+1) git clone https://github.com/Priyanshu1-62/iNoteBook.git
+2) cd iNoteBook
+3) npm install
+
 ### 🗺️ Overview
 - iNoteBook is a fully responsive, Vite powered MERN-stack project designed to be your everyday companion for jotting down insights, to recollect inspirations and Eureka moments, or to preserve hot teas for future gossips !!
 - __💅 Styling and UX:__ Tailwind CSS, a utility-first framework, is used for designing responsive, mobile-friendly layouts. Other notable features include:
