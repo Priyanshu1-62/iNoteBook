@@ -14,16 +14,16 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 
 ### ⚙️ Setup
 1) Installation:
-   - git clone https://github.com/Priyanshu1-62/iNoteBook.git
-   - cd iNoteBook
-   - npm install
+   - `git clone https://github.com/Priyanshu1-62/iNoteBook.git`
+   - `cd iNoteBook`
+   - `npm install`
 2) Environment Variables: <br>
    Create a .env file in the project root with (Update the port if your backend runs on a different one):
-   - VITE_BACKEND_URL=http://localhost:5000
-3) Backend SEtup:
-   - Follow steps in [iNoteBook Backend](https://github.com/Priyanshu1-62/iNoteBook-Server.git) repo.
+   - `VITE_BACKEND_URL=http://localhost:5000`
+3) Backend Setup:
+   - Follow setup steps in [iNoteBook Backend](https://github.com/Priyanshu1-62/iNoteBook-Server.git) repo.
 4) Run Frontend:
-   - npm run dev
+   - `npm run dev`
 ---
 
 1) git clone https://github.com/Priyanshu1-62/iNoteBook.git
