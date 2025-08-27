@@ -37,7 +37,7 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
   - Minimalist, clean and uncluttered UI
   - Alert and Loading spinner system
   - Smooth transitions
-  - Disabled button feedback
+  - Visual process feedback
 - __🧱 Structure and Security:__
   - The project follows modular file structure, organized React-components, maintainable and scalable flow of state variables using Context-API, thoughtful user interactions and lucid icons.
   - For authorized access to protected resources and protection against XSS attacks, a system of JSON web-tokens (JWTs) is used. User input is sanitized and validated before further processing.
