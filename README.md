@@ -86,6 +86,6 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ## 📛 Badges Credit
-- [shields.io](https://shields.io) for dynamic badge generation  
-- [inttter/md-badges](https://github.com/inttter/md-badges) for curated badge styles and inspirations
+- [shields.io](https://shields.io) for dynamic badge generation.  
+- [inttter/md-badges](https://github.com/inttter/md-badges) for curated badge styles and inspirations.
 
