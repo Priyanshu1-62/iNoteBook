@@ -27,6 +27,9 @@ function MyNote() {
     const handleEdit = () => {
         setIsEditing(true);
     }
+    const handleCancel = () => {
+        setIsEditing(false);
+    }
     return (
         <>
         <Navbar />
@@ -54,10 +57,14 @@ function MyNote() {
                 {content==="images" && <div>
                 </div>}
             </div>
-            <div className="flex flex-row-reverse gap-5 my-2">
+            {!isEditing && <div className="flex flex-row-reverse gap-5 my-2">
                 <button className="px-5 py-1 text-white bg-rose-500 rounded-md cursor-pointer" onClick={handleEdit}>Delete</button>
                 <button className="px-5 py-1 text-white bg-blue-500 rounded-md cursor-pointer" onClick={handleEdit}>Edit</button>
-            </div>
+            </div>}
+            {isEditing && <div className="flex flex-row-reverse gap-5 my-2">
+                <button className="px-5 py-1 text-white bg-green-500 rounded-md cursor-pointer" onClick={handleEdit}>Save</button>
+                <button className="px-5 py-1 text-white bg-yellow-500 rounded-md cursor-pointer" onClick={handleCancel}>Cancel</button>
+            </div>}
         </div>
         </>
     )
