@@ -29,7 +29,7 @@ function Navbar() {
     </div>}
       <div className="h-1 bg-[#8d99ae]"></div>
 
-      <nav className={`fixed top-0 z-40 flex items-center w-full p-3 bg-[#b5e48c] dark:bg-[#5e548e] text-black dark:text-white ${visibility ? "" : "shadow-2xl shadow-[#1a1c2c]"}`}>
+      <nav className={`fixed top-0 z-40 flex items-center w-full p-3 bg-[#b9fbc0] dark:bg-[#5e548e] text-black dark:text-white ${visibility ? "" : "shadow-2xl shadow-[#1a1c2c]"}`}>
           <Link className="ml-3 mr-2 px-1 cursor-pointer text-xl font-mono font-bold text-stone-800 dark:text-white opacity-85 hover:opacity-100" to='/'>iNoteBook</Link>
 
           <ul className="hidden md:flex items-center">
