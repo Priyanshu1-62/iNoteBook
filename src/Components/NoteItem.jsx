@@ -9,7 +9,7 @@ function NoteItem(props) {
   }
   return (
     <>
-    <div className="bg-[#b8ceba] dark:bg-[#1c273b] mx-3 my-3 border-2 border-b-gray-600 rounded-lg px-2 py-2 h-fit">
+    {/* <div className="bg-[#b8ceba] dark:bg-[#1c273b] mx-3 my-3 border-2 border-b-gray-600 rounded-lg px-2 py-2 h-fit">
       <div className="flex justify-between items-center w-full mb-2 mx-1">
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold truncate text-gray-700 dark:text-amber-50 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">{note.title}</h2>
         <div className="flex pr-2 py-2 w-fit">
@@ -24,6 +24,11 @@ function NoteItem(props) {
       </div>
       <div className="text-sm text-black dark:text-amber-50 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 font-bold mt-2">
         {getDate(note.date?note.date:"2025-06-05T06:56:47.578+00:00")}
+      </div>
+    </div> */}
+    <div className="relative bg-[#b9fbc0] dark:bg-[#1c273b] mx-3 my-3 border-2 border-b-gray-600 rounded-lg h-28">
+      <div className="absolute top-2 -right-2 h-24 flex items-center bg-[#b8ceba]">
+        Check
       </div>
     </div>
     </>

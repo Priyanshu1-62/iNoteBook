@@ -37,7 +37,7 @@ function Navbar() {
               <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/feedback"?"opacity-100 font-normal active:font-extralight":""}`} to='/feedback'>Feedback</Link>
           </ul>
           <div className="w-full flex items-center justify-end">
-          <button disabled={loadingExit} className={`hidden md:flex text-xs w-fit px-[1rem] py-[0.3rem] mr-7 rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#92c962] dark:bg-[#50477e] drop-shadow-xl ${loadingExit?"opacity-50 cursor-not-allowed":" cursor-pointer hover:bg-[#7fa35f] dark:hover:bg-[#3b345e]"}`} onClick= {handleLogout}>LOG OUT</button>
+          <button disabled={loadingExit} className={`hidden md:flex text-xs w-fit px-[1rem] py-[0.3rem] mr-7 rounded-xl font-bold border-b-3 border-black dark:border-white bg-[#60e16d] dark:bg-[#50477e] drop-shadow-xl ${loadingExit?"opacity-50 cursor-not-allowed":" cursor-pointer hover:bg-[#5e8f64] dark:hover:bg-[#3b345e]"}`} onClick= {handleLogout}>LOG OUT</button>
             <button className=" mr-7 px-1 py-1 cursor-pointer" onClick= {handletoggleMode}>
               {darkMode && <Sun className="w-6 h-6"/>}
               {!darkMode && <Moon className="w-6 h-6"/>}

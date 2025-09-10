@@ -1,6 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import Navbar from './Navbar';
+import Alert from './Alert';
+import NoteContext from '../Contexts/noteContext';
+import NoteItem from './NoteItem';
+import AuthContext from '../Contexts/authContext';
+import AlertContext from '../Contexts/alertcontext';
+import Prompt from './Prompt';
+import Spinner from './Spinner';
 import { Paperclip } from 'lucide-react';
 
 function MyNote() {
@@ -31,9 +38,11 @@ function MyNote() {
     const handleCancel = () => {
         setIsEditing(false);
     }
+    
     return (
         <>
         <Navbar />
+        <Alert />
         <div className="flex mt-28 px-7 text-stone-700 dark:text-white">
             <h2 className="text-3xl font-bold">{noteData.title}</h2>
         </div>
@@ -44,7 +53,7 @@ function MyNote() {
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="audio" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("audio")}}>Audio</button>
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="images" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("images")}}>Images</button>
             </div>
-            <div className={`h-[64vh] bg-white dark:bg-[#000814] ${isEditing ? "border-4 border-blue-700 rounded-lg" : ""}`}>
+            <div className={`h-[64vh] bg-white dark:bg-[#000814] ${isEditing ? "border-4 border-blue-700 rounded-lg" : ""} transition-all duration-150 ease-in`}>
                 {content==="description" && <div className="px-4 py-4 overflow-auto">
                     <p>{noteData.description}</p>
                 </div>}
@@ -53,9 +62,11 @@ function MyNote() {
                         return <h4 className="text-sm text-black bg-gray-300 px-3 py-1 rounded-lg" key={tag}>{tag}</h4>
                     })}
                 </div>}
-                {content==="audio" && <div className="overflow-auto">
+                {content==="audio" && <div className="h-full flex justify-center items-center overflow-auto">
+                    <div className="text-gray-400 text-4xl sm:text-6xl lg:text-8xl font-bold -rotate-50 lg:-rotate-30">In Development</div>
                 </div>}
-                {content==="images" && <div className="overflow-auto">
+                {content==="images" && <div className="h-full flex justify-center items-center overflow-auto">
+                    <div className="text-gray-400 text-4xl sm:text-6xl lg:text-8xl font-bold -rotate-50 lg:-rotate-30">In Development</div>
                 </div>}
             </div>
             {!isEditing && <div className="flex flex-row-reverse gap-5 my-2">
