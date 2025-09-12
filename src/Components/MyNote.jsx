@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from './Navbar';
 import Alert from './Alert';
 import NoteContext from '../Contexts/noteContext';
@@ -12,12 +12,20 @@ import { Paperclip } from 'lucide-react';
 
 function MyNote() {
     const { id }=useParams();
+    const navigate=useNavigate();
     const [content, setContent]=useState("description");
     const [isEditing, setIsEditing]=useState(false);
-    const [noteData, setNoteData]=useState({
+    const {refresh, logout, loadingNotes, setLoadingNotes}=useContext(AuthContext);
+    const {handleAlert}=useContext(AlertContext);
+    const {myNotes, ANote, addNote, getNotes, getANote, editNote, deleteNote}=useContext(NoteContext);
+    const [addingNote, setaddingNote]=useState(false);
+    const [updatingNote, setupdatingNote]=useState(false);
+    const [showPrompt, setShowPrompt]=useState(false);
+    const [deletePrompt, setDeletePrompt]=useState(false);
+    const [formDatas, setformDatas]=useState({
         "title": "Dear Sunshine",
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "tags": ["Sunflower", "Purple-heart", "Sunflower1", "Purple-heart1", "Sunflower2", "Purple-heart2", "Sunflower3", "Purple-heart3", "Sunflower4", "Purple-heart4", "Sunflower5", "Purple-heart5"],
+        "tags": ["Sunflower", "Purple-heart", "Sunflower1", "Purple-heart1", "Sunflower2", "Purple-heart2", "Sunflower3", "Purple-heart3", "Sunflower4", "Purple-heart4", "Sunflower5", "Purple-heart5", "Bosom-friend1"],
         "attachment": [
             {
                 "fileType": "audio",
@@ -29,22 +37,89 @@ function MyNote() {
             }
         ]
     });
-    const fetchData = () => {
-
-    }
     const handleEdit = () => {
         setIsEditing(true);
     }
     const handleCancel = () => {
         setIsEditing(false);
     }
-    
+
+    // Delete Note
+    const handleDeleteNote = async ()=>{
+        if(addingNote || updatingNote || showPrompt) return;
+        setShowPrompt(true);
+    }
+    useEffect(()=>{
+        if (deletePrompt) {
+          handleDeleteAfterConfirm();
+          setDeletePrompt(false);
+        }
+        return ()=>{
+          setDeletePrompt(false);
+        };
+    }, [deletePrompt]);
+
+    const handleDeleteAfterConfirm = async ()=>{
+        try {
+          setLoadingNotes(true);
+          let response=await deleteNote(id);
+          if(response.status===401){
+            await refresh();
+            response=await deleteNote(id);
+          }
+          if(response.ok){
+            setLoadingNotes(false);
+            handleAlert({ heading: "Success", message: "Note deleted successfully", colour: "green" });
+            navigate('/home');
+            return;
+          }
+          const res=await response.json();
+          setLoadingNotes(false);
+          if(response.status===401){
+            handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
+            await logout();
+          }
+          else handleAlert({ heading: "Failed to delete", message: res.errors, colour: "red" });
+        } 
+        catch (error) {
+          handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
+        }
+    }
+
+    // Get Note
+    const handleGetANote = async (noteId) => {
+        try {
+            setLoadingNotes(true);
+            let response=await getANote(noteId);
+            if(response.status===401){
+              await refresh();
+              response=await getANote(noteId);
+            }
+            if(response.ok){
+              setLoadingNotes(false);
+              return;
+            }
+            const res=await response.json();
+            setLoadingNotes(false);
+            if(response.status===401){
+              handleAlert({ heading: "Unauthorized !!", message: "Please Signup/Login to continue", colour: "red" });
+              await logout();
+            }
+            else handleAlert({ heading: "Oops!!", message: res.errors, colour: "yellow" });
+        } 
+        catch (error) {
+            
+        }
+    }
+    useEffect(()=>{
+        handleGetANote(id);
+    }, []);
     return (
         <>
         <Navbar />
         <Alert />
         <div className="flex mt-28 px-7 text-stone-700 dark:text-white">
-            <h2 className="text-3xl font-bold">{noteData.title}</h2>
+            <h2 className="text-3xl font-bold">{formDatas.title}</h2>
         </div>
         <div className="mt-3 px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b]">
             <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
@@ -55,10 +130,10 @@ function MyNote() {
             </div>
             <div className={`h-[64vh] bg-white dark:bg-[#000814] ${isEditing ? "border-4 border-blue-700 rounded-lg" : ""} transition-all duration-150 ease-in`}>
                 {content==="description" && <div className="px-4 py-4 overflow-auto">
-                    <p>{noteData.description}</p>
+                    <p>{formDatas.description}</p>
                 </div>}
                 {content==="tags" && <div className="flex flex-wrap gap-4 px-4 py-4 overflow-auto">
-                    {noteData.tags.map((tag)=>{
+                    {formDatas.tags.map((tag)=>{
                         return <h4 className="text-sm text-black bg-gray-300 px-3 py-1 rounded-lg" key={tag}>{tag}</h4>
                     })}
                 </div>}
@@ -70,7 +145,7 @@ function MyNote() {
                 </div>}
             </div>
             {!isEditing && <div className="flex flex-row-reverse gap-5 my-2">
-                <button className="px-5 py-1 text-white bg-rose-500 rounded-md cursor-pointer" onClick={handleEdit}>Delete</button>
+                <button className="px-5 py-1 text-white bg-rose-500 rounded-md cursor-pointer" onClick={handleDeleteNote}>Delete</button>
                 <button className="px-5 py-1 text-white bg-blue-500 rounded-md cursor-pointer" onClick={handleEdit}>Edit</button>
             </div>}
             {isEditing && <div className="flex flex-row-reverse gap-5 my-2">
@@ -80,6 +155,7 @@ function MyNote() {
                 {content==="images" && <button className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Image</button>}
             </div>}
         </div>
+        {showPrompt && <Prompt setShowPrompt={setShowPrompt} setDeletePrompt={setDeletePrompt}/>}
         </>
     )
 }
