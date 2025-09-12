@@ -72,6 +72,7 @@ function NoteState(props) {
       return clone;
     } 
     catch (error) {
+      console.log("Fail");
       handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
     }
   }

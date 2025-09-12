@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Edit, Trash2 } from 'lucide-react'
 
 function NoteItem(props) {
-  const {note, handleupdateNote, handleDeleteNote}=props;
+  const {note, handleOpenMyNote}=props;
   const getDate = (str)=>{
     const date=new Date(str);
     return date.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
@@ -26,9 +26,10 @@ function NoteItem(props) {
         {getDate(note.date?note.date:"2025-06-05T06:56:47.578+00:00")}
       </div>
     </div> */}
-    <div className="relative bg-[#b9fbc0] dark:bg-[#1c273b] mx-3 my-3 border-2 border-b-gray-600 rounded-lg h-28">
-      <div className="absolute top-2 -right-2 h-24 flex items-center bg-[#b8ceba]">
-        Check
+    <div className="relative h-28 bg-[#b9fbc0] dark:bg-[#1c273b] mx-3 my-3">
+      <div className="absolute top-2 -right-2 h-24 w-full flex items-center bg-[#b8ceba] border-2 border-gray-200">
+        <p>Check</p>
+        <button onClick={()=>{handleOpenMyNote(note._id)}}>Go</button>
       </div>
     </div>
     </>

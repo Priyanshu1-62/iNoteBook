@@ -6,10 +6,12 @@ import AlertContext from '../Contexts/alertcontext';
 import { FilePlus } from 'lucide-react'
 import Prompt from './Prompt';
 import Spinner from './Spinner';
+import { useNavigate } from 'react-router-dom';
 
 function Notes() {
   const idRef=useRef(null);
   const formRef=useRef(null);
+  const navigate=useNavigate();
   const {refresh, logout, loadingNotes, setLoadingNotes}=useContext(AuthContext);
   const {handleAlert}=useContext(AlertContext);
   const {myNotes, addNote, getNotes, editNote, deleteNote}=useContext(NoteContext);
@@ -59,6 +61,11 @@ function Notes() {
     catch (error) {
       handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
     }
+  }
+
+  //Navigate to MyNote
+  const handleOpenMyNote = (id)=>{
+    navigate(`/notes/${id}`);
   }
   
   //Update Note
@@ -242,7 +249,7 @@ function Notes() {
       </div>}
       {myNotes.length>0 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {myNotes.map((element)=>{
-          return <NoteItem key={element._id} note={element} handleupdateNote={handleupdateNote} handleDeleteNote={handleDeleteNote}></NoteItem>
+          return <NoteItem key={element._id} note={element} handleOpenMyNote={handleOpenMyNote}></NoteItem>
         })}
       </div>}
       </>
