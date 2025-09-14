@@ -33,6 +33,7 @@ function MyNote() {
     }
     //Update Note
     const handleEdit = () => {
+        if(updatingNote || showPrompt || loadingNotes) return;
         setformDatas({
             "title": ANote.title,
             "description": ANote.description,
@@ -142,19 +143,6 @@ function MyNote() {
             handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
         }
     }
-    useEffect(()=>{
-        if(updatingNote && descriptionRef.current){
-            descriptionRef.current.style.height="auto";
-            descriptionRef.current.style.height=`${descriptionRef.current.scrollHeight}px`;
-        }
-    }, [updatingNote, content]);
-
-    useEffect(()=>{
-        if(tagRef.current){
-            tagRef.current.style.height="auto";
-            tagRef.current.style.height=`${tagRef.current.scrollHeight}px`;
-        }
-    }, [updatingNote, content]);
 
     useEffect(()=>{
         handleGetANote(id);
@@ -167,12 +155,14 @@ function MyNote() {
             <Spinner />
         </div>}
         {updatingNote && <form onSubmit={handleSubmit}>
-            <input 
-                value={formDatas.title} 
-                onChange={(e) => {setformDatas(prev => ({...prev, title:e.target.value}))}} 
-                className="flex mt-28 mx-5 px-2 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none border-4 border-blue-700 rounded-lg">
-            </input>
-            <div className="mt-3 px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b]">
+            <div className="px-2 md:px-5">
+                <input 
+                    value={formDatas.title} 
+                    onChange={(e) => {setformDatas(prev => ({...prev, title:e.target.value}))}} 
+                    className="w-full flex mt-28 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none border-4 border-blue-700 rounded-lg">
+                </input>
+            </div>
+            <div className="mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b]">
                 <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
                     <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
                     <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
@@ -186,10 +176,8 @@ function MyNote() {
                         value={formDatas.description} 
                         onChange={(e) => {
                             setformDatas(prev => ({...prev, description:e.target.value}));
-                            descriptionRef.current.style.height="auto";
-                            descriptionRef.current.style.height=`${descriptionRef.current.scrollHeight}px`;
                         }} 
-                        className="w-full px-4 py-4 break-all whitespace-pre-wrap focus:outline-none">
+                        className="w-full h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none">
                     </textarea>}
                     {content==="tags" && 
                     <textarea 
@@ -197,10 +185,8 @@ function MyNote() {
                         value={formDatas.tag} 
                         onChange={(e) => {
                             setformDatas(prev => ({...prev, tag:e.target.value}));
-                            tagRef.current.style.height="auto";
-                            tagRef.current.style.height=`${tagRef.current.scrollHeight}px`;
                         }} 
-                        className="w-full flex flex-wrap gap-4 px-4 py-4 overflow-auto focus:outline-none">
+                        className="w-full h-full flex flex-wrap gap-4 px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none">
                     </textarea>}
                     {content==="audio" && 
                     <div className="h-full flex justify-center items-center overflow-auto">
@@ -214,27 +200,27 @@ function MyNote() {
                 <div className="flex flex-row-reverse gap-5 my-2">
                     <button type="submit" className="px-5 py-1 text-white bg-green-500 rounded-md cursor-pointer" onClick={()=>{console.log(ANote)}}>Save</button>
                     <button type="button" className="px-5 py-1 text-white bg-[#e6aa05] rounded-md cursor-pointer" onClick={handleCancel}>Cancel</button>
-                    {content==="audio" && <button type="button" className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Audio</button>}
-                    {content==="images" && <button type="button" className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Image</button>}
+                    {content==="audio" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Audio</button>}
+                    {content==="images" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Image</button>}
                 </div>
             </div>
         </form>}
 
         {!updatingNote && 
         <>
-        <div className="flex mt-28 mx-5 px-2 py-1 text-stone-700 dark:text-white">
-            <h2 className="text-3xl font-bold">{ANote.title}</h2>
+        <div className="mt-28 mx-2 md:mx-5 py-1 text-stone-700 dark:text-white border-4 border-transparent">
+            <h2 className="text-3xl font-bold truncate">{ANote.title}</h2>
         </div>
-        <div className={`mt-3 px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b] ${showPrompt?"opacity-30":""}`}>
+        <div className={`mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b] ${showPrompt?"opacity-30":""}`}>
             <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="audio" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("audio")}}>Audio</button>
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="images" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("images")}}>Images</button>
             </div>
-            <div className={`h-[64vh] bg-white dark:bg-[#000814] transition-all duration-150 ease-in`}>
+            <div className={`h-[64vh] bg-white dark:bg-[#000814] border-4 border-transparent transition-all duration-150 ease-in`}>
                 {content==="description" && 
-                <div className="px-4 py-4 break-all whitespace-pre-wrap">
+                <div className="h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto">
                     <p>{ANote.description}</p>
                 </div>}
                 {content==="tags" && 
