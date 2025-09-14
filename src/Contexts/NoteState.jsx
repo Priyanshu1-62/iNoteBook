@@ -94,7 +94,7 @@ function NoteState(props) {
         setmyNotes(prev => prev.map((element)=>{
           return (element._id === id) ? {...element, ...data} : element
         }));
-        const res=response.json();
+        const res=await response.json();
         setANote(prev => ({...prev, ...res.notes}));
       }
       return clone;

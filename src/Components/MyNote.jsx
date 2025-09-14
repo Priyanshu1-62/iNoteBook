@@ -48,7 +48,6 @@ function MyNote() {
         try {
             setLoadingNotes(true);
             e.preventDefault();
-            console.log(formDatas);
             let response=await editNote(id, formDatas);
             if(response.status===401){
                 await refresh();
@@ -144,18 +143,18 @@ function MyNote() {
         }
     }
     useEffect(()=>{
-        if(descriptionRef.current){
+        if(updatingNote && descriptionRef.current){
             descriptionRef.current.style.height="auto";
             descriptionRef.current.style.height=`${descriptionRef.current.scrollHeight}px`;
         }
-    }, [content, formDatas.description]);
+    }, [updatingNote, content]);
 
     useEffect(()=>{
         if(tagRef.current){
             tagRef.current.style.height="auto";
             tagRef.current.style.height=`${tagRef.current.scrollHeight}px`;
         }
-    }, [content, formDatas.tag]);
+    }, [updatingNote, content]);
 
     useEffect(()=>{
         handleGetANote(id);
@@ -171,28 +170,36 @@ function MyNote() {
             <input 
                 value={formDatas.title} 
                 onChange={(e) => {setformDatas(prev => ({...prev, title:e.target.value}))}} 
-                className="flex mt-28 mx-5 px-2 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none">
+                className="flex mt-28 mx-5 px-2 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none border-4 border-blue-700 rounded-lg">
             </input>
             <div className="mt-3 px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b]">
                 <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
-                    <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
-                    <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
-                    <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="audio" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("audio")}}>Audio</button>
-                    <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="images" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("images")}}>Images</button>
+                    <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
+                    <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
+                    <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="audio" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("audio")}}>Audio</button>
+                    <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="images" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("images")}}>Images</button>
                 </div>
                 <div className={`h-[64vh] bg-white dark:bg-[#000814] border-4 border-blue-700 rounded-lg transition-all duration-150 ease-in`}>
                     {content==="description" && 
                     <textarea 
                         ref={descriptionRef}
                         value={formDatas.description} 
-                        onChange={(e) => {setformDatas(prev => ({...prev, description:e.target.value}))}} 
+                        onChange={(e) => {
+                            setformDatas(prev => ({...prev, description:e.target.value}));
+                            descriptionRef.current.style.height="auto";
+                            descriptionRef.current.style.height=`${descriptionRef.current.scrollHeight}px`;
+                        }} 
                         className="w-full px-4 py-4 break-all whitespace-pre-wrap focus:outline-none">
                     </textarea>}
                     {content==="tags" && 
                     <textarea 
                         ref={tagRef}
                         value={formDatas.tag} 
-                        onChange={(e) => {setformDatas(prev => ({...prev, tag:e.target.value}))}} 
+                        onChange={(e) => {
+                            setformDatas(prev => ({...prev, tag:e.target.value}));
+                            tagRef.current.style.height="auto";
+                            tagRef.current.style.height=`${tagRef.current.scrollHeight}px`;
+                        }} 
                         className="w-full flex flex-wrap gap-4 px-4 py-4 overflow-auto focus:outline-none">
                     </textarea>}
                     {content==="audio" && 
