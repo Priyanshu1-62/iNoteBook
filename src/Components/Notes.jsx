@@ -205,7 +205,7 @@ function Notes() {
     {loadingNotes && (!addingNote) && (!updatingNote) && <div className="fixed flex items-center w-lvw h-lvh">
       <Spinner />
     </div>}
-    <div className={`${showPrompt ? "opacity-30" : ""} mx-1`}>
+    <div className={`${showPrompt ? "opacity-30" : ""} ml-2 mr-4`}>
       <div className="flex justify-center mt-28 w-full">
         <h1 className="mx-3 mb-2 text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
       </div>
