@@ -8,6 +8,7 @@ import NoteState from './Contexts/NoteState';
 import AuthState from './Contexts/AuthState';
 import AlertState from './Contexts/AlertState';
 import BgSetter from './Components/BgSetter';
+import MyNote from './Components/MyNote';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path='/auth' element={<Authorize/>} />
               <Route path='/home' element={<Home/>} />
               <Route path='/feedback' element={<About/>} />
+              <Route path='/notes/:id' element={<MyNote/>} />
             </Routes>
           </NoteState>
         </AuthState>

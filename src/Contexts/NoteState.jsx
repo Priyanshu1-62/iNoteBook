@@ -5,6 +5,7 @@ function NoteState(props) {
   const host=import.meta.env.VITE_BACKEND_URL;
   const fetchedNotes=[];
   const [myNotes, setmyNotes]=useState(fetchedNotes);
+  const [ANote, setANote]=useState({});
   //Create
   const addNote=async (data)=>{
     try {
@@ -52,6 +53,29 @@ function NoteState(props) {
     }
   }
 
+  //Read a note
+  const getANote=async (id)=>{
+    try {
+      let accessToken=localStorage.getItem("accessToken");
+      let response=await fetch(`${host}/api/notes/readANote/${id}`, {
+        method: "GET",
+        headers:{
+          'Content-Type': 'application/json',
+          'accessToken': accessToken
+        }
+      });
+      const clone=response.clone();
+      if(response.ok){
+        const res=await response.json();
+        setANote(res.notes);
+      }
+      return clone;
+    } 
+    catch (error) {
+      handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
+    }
+  }
+
   //Update
   const editNote=async (id, data)=>{
     try {
@@ -69,6 +93,8 @@ function NoteState(props) {
         setmyNotes(prev => prev.map((element)=>{
           return (element._id === id) ? {...element, ...data} : element
         }));
+        const res=await response.json();
+        setANote(prev => ({...prev, ...res.notes}));
       }
       return clone;
     } 
@@ -99,7 +125,7 @@ function NoteState(props) {
     }
   }
   return (
-    <NoteContext.Provider value={{myNotes, setmyNotes, addNote, editNote, deleteNote, getNotes}}>
+    <NoteContext.Provider value={{myNotes, ANote, setmyNotes, addNote, editNote, deleteNote, getNotes, getANote}}>
         {props.children}
     </NoteContext.Provider>
   )

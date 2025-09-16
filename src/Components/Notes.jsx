@@ -6,10 +6,12 @@ import AlertContext from '../Contexts/alertcontext';
 import { FilePlus } from 'lucide-react'
 import Prompt from './Prompt';
 import Spinner from './Spinner';
+import { useNavigate } from 'react-router-dom';
 
 function Notes() {
   const idRef=useRef(null);
   const formRef=useRef(null);
+  const navigate=useNavigate();
   const {refresh, logout, loadingNotes, setLoadingNotes}=useContext(AuthContext);
   const {handleAlert}=useContext(AlertContext);
   const {myNotes, addNote, getNotes, editNote, deleteNote}=useContext(NoteContext);
@@ -59,6 +61,11 @@ function Notes() {
     catch (error) {
       handleAlert({ heading: "Oops!!", message: "check your network connection or try again later", colour: "yellow" });
     }
+  }
+
+  //Navigate to MyNote
+  const handleOpenMyNote = (id)=>{
+    navigate(`/notes/${id}`);
   }
   
   //Update Note
@@ -198,12 +205,12 @@ function Notes() {
     {loadingNotes && (!addingNote) && (!updatingNote) && <div className="fixed flex items-center w-lvw h-lvh">
       <Spinner />
     </div>}
-    <div className={`${showPrompt ? "opacity-30" : ""} mx-1`}>
+    <div className={`${showPrompt ? "opacity-30" : ""} ml-2 mr-4`}>
       <div className="flex justify-center mt-28 w-full">
         <h1 className="mx-3 mb-2 text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
       </div>
       <div className="flex justify-end w-full mt-6">
-        <button disabled={addingNote} className={`flex mx-3 bg-[#003049] dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer hover:bg-[#105479] active:bg-cyan-900 dark:hover:bg-yellow-600 dark:active:bg-yellow-700"}`} onClick={handleAddNote
+        <button disabled={addingNote} className={`flex mx-3 bg-pink-800 dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl shadow-xl/30 ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer hover:bg-[#105479] active:bg-cyan-900 dark:hover:bg-yellow-600 dark:active:bg-yellow-700"}`} onClick={handleAddNote
         }>
           <FilePlus />
           <h3>&nbsp; New Note</h3>
@@ -224,7 +231,7 @@ function Notes() {
             <textarea name="description" value={formDatas.description} onChange={(e)=> setformDatas(prev=>({...prev, description:e.target.value})) } autoComplete="off" className="w-75 h-24 resize-none md:w-120 my-1 px-2 py-1 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 tracking-wide focus:outline-none border-b-1 dark:border-white text-sm text-black dark:text-amber-50 text-wrap placeholder:font-bold placeholder:opacity-55 placeholder:text-black dark:placeholder:text-white" placeholder="Description (min 3 chars)"></textarea>
           </div>
           <div className="my-5 mx-5">
-            <input name="tag" value={formDatas.tag} onChange={(e)=> setformDatas(prev=>({...prev, tag:e.target.value})) } className="w-75 md:w-120 my-1 px-2 py-1 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 focus:outline-none border-b-1 dark:border-white text-sm text-black dark:text-amber-50 placeholder:font-bold placeholder:opacity-55 placeholder:text-black dark:placeholder:text-white" type="text" placeholder="Tag (min 3 chars)"></input>
+            <input name="tag" value={formDatas.tag} onChange={(e)=> setformDatas(prev=>({...prev, tag:e.target.value})) } className="w-75 md:w-120 my-1 px-2 py-1 caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 focus:outline-none border-b-1 dark:border-white text-sm text-black dark:text-amber-50 placeholder:font-bold placeholder:opacity-55 placeholder:text-black dark:placeholder:text-white" type="text" placeholder="Tags (Space seperated, min 3 char each)"></input>
           </div>
           <button type="submit" disabled={loadingNotes && (addingNote || updatingNote)} className={`text-xs text-black dark:text-amber-50 w-75 md:w-120 mb-5 mx-5 px-[0.5rem] py-[0.18rem] font-bold border-1 border-stone-500 dark:border-stone-300 bg-stone-300 dark:bg-stone-500 drop-shadow-xl ${loadingNotes && (addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"cursor-pointer hover:bg-stone-400 active:bg-stone-500 dark:hover:bg-stone-600 dark:active:bg-stone-700"}`}>{updatingNote?`Update` : `Create`}</button>
           <div className="flex justify-center text-xs text-black dark:text-amber-50 mx-5 mb-5">
@@ -240,9 +247,9 @@ function Notes() {
       {myNotes.length===0 && <div className="mx-6 my-3">
         <h2 className="text-sm text-black dark:text-amber-50">No notes to display</h2>
       </div>}
-      {myNotes.length>0 && <div className="grid grid-cols-1 lg:grid-cols-2">
+      {myNotes.length>0 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {myNotes.map((element)=>{
-          return <NoteItem key={element._id} note={element} handleupdateNote={handleupdateNote} handleDeleteNote={handleDeleteNote}></NoteItem>
+          return <NoteItem key={element._id} note={element} handleOpenMyNote={handleOpenMyNote}></NoteItem>
         })}
       </div>}
       </>
