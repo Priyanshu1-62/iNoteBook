@@ -159,10 +159,12 @@ function MyNote() {
                 <input 
                     value={formDatas.title} 
                     onChange={(e) => {setformDatas(prev => ({...prev, title:e.target.value}))}} 
-                    className="w-full flex mt-28 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none border-4 border-blue-700 rounded-lg">
+                    className="w-full flex mt-28 py-1 text-3xl font-bold text-stone-700 dark:text-white focus:outline-none border-4 border-blue-700 rounded-lg caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800"
+                    type="text"
+                    placeholder="Title (min 3 chars)">
                 </input>
             </div>
-            <div className="mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b]">
+            <div className="mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b] transition-all duration-300 ease-in">
                 <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
                     <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
                     <button type="button" className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
@@ -177,7 +179,9 @@ function MyNote() {
                         onChange={(e) => {
                             setformDatas(prev => ({...prev, description:e.target.value}));
                         }} 
-                        className="w-full h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none">
+                        className="w-full h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800"
+                        type="text"
+                        placeholder="Description (min 3 chars)">
                     </textarea>}
                     {content==="tags" && 
                     <textarea 
@@ -186,7 +190,9 @@ function MyNote() {
                         onChange={(e) => {
                             setformDatas(prev => ({...prev, tag:e.target.value}));
                         }} 
-                        className="w-full h-full flex flex-wrap gap-4 px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none">
+                        className="w-full h-full flex flex-wrap gap-4 px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto focus:outline-none caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800"
+                        type="text"
+                        placeholder="Tags (Space seperated, min 3 char each)">
                     </textarea>}
                     {content==="audio" && 
                     <div className="h-full flex justify-center items-center overflow-auto">
@@ -198,7 +204,7 @@ function MyNote() {
                     </div>}
                 </div>
                 <div className="flex flex-row-reverse gap-5 my-2">
-                    <button type="submit" className="px-5 py-1 text-white bg-green-500 rounded-md cursor-pointer" onClick={()=>{console.log(ANote)}}>Save</button>
+                    <button type="submit" className="px-5 py-1 text-white bg-green-500 rounded-md cursor-pointer">Save</button>
                     <button type="button" className="px-5 py-1 text-white bg-[#e6aa05] rounded-md cursor-pointer" onClick={handleCancel}>Cancel</button>
                     {content==="audio" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Audio</button>}
                     {content==="images" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Image</button>}
@@ -208,10 +214,10 @@ function MyNote() {
 
         {!updatingNote && 
         <>
-        <div className="mt-28 mx-2 md:mx-5 py-1 text-stone-700 dark:text-white border-4 border-transparent">
+        <div className="mt-28 mx-2 md:mx-5 py-1 text-stone-700 dark:text-white border-4 border-transparent caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800 transition-all duration-300 ease-in">
             <h2 className="text-3xl font-bold truncate">{ANote.title}</h2>
         </div>
-        <div className={`mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b] ${showPrompt?"opacity-30":""}`}>
+        <div className={`mt-3 px-2 md:px-5 mx-2 border-1 text-black dark:text-white bg-[#b8ceba] dark:bg-[#1c273b] ${showPrompt?"opacity-30":""} transition-all duration-300 ease-in`}>
             <div className="flex mt-2 text-gray-600 dark:text-white font-bold">
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="description" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("description")}}>Description</button>
                 <button className={`py-1 px-4 border-slate-700 cursor-pointer transition-colors duration-150 ease-in ${content==="tags" ? "bg-white dark:bg-[#000814] border-t-1 border-x-1" : ""}`} onClick={()=>{setContent("tags")}}>Tags</button>
@@ -220,11 +226,11 @@ function MyNote() {
             </div>
             <div className={`h-[64vh] bg-white dark:bg-[#000814] border-4 border-transparent transition-all duration-150 ease-in`}>
                 {content==="description" && 
-                <div className="h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto">
+                <div className="h-full px-4 py-4 break-all whitespace-pre-wrap overflow-y-auto caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">
                     <p>{ANote.description}</p>
                 </div>}
                 {content==="tags" && 
-                <div className="flex flex-wrap gap-4 px-4 py-4 overflow-auto">
+                <div className="flex flex-wrap gap-4 px-4 py-4 overflow-auto caret-pink-600 selection:bg-pink-300 dark:selection:bg-pink-800">
                     {ANote.tag.map((tag)=>{
                         return <h4 className="text-sm text-black bg-gray-300 px-3 py-1 rounded-lg" key={tag}>{tag}</h4>
                     })}
