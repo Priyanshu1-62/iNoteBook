@@ -210,7 +210,7 @@ function Notes() {
         <h1 className="mx-3 mb-2 text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-amber-50">Your personal notes straight from cloud &#9729;</h1>
       </div>
       <div className="flex justify-end w-full mt-6">
-        <button disabled={addingNote} className={`flex mx-3 bg-pink-800 dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl shadow-xl/30 ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer hover:bg-[#105479] active:bg-cyan-900 dark:hover:bg-yellow-600 dark:active:bg-yellow-700"}`} onClick={handleAddNote
+        <button disabled={addingNote} className={`flex mx-3 bg-pink-800 dark:bg-yellow-500 text-white dark:text-black font-bold px-3 py-2 border-2 border-cyan-600 rounded-2xl shadow-xl/30 ${(addingNote || updatingNote)?"opacity-50 cursor-not-allowed":"opacity-100 cursor-pointer hover:bg-pink-900 active:bg-pink-500 dark:hover:bg-yellow-600 dark:active:bg-yellow-700"} transition-all duration-300 ease-in`} onClick={handleAddNote
         }>
           <FilePlus />
           <h3>&nbsp; New Note</h3>

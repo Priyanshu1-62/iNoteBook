@@ -46,7 +46,7 @@ function Navbar() {
           </div>
       </nav>
       
-      <div className={`fixed top-12 z-40 flex flex-col divide-gray-500 w-full py-1 bg-[#ecc35b] dark:bg-[#3b345e] text-black dark:text-white md:hidden transition-all duration-300 ease-in-out overflow-hidden ${visibility ? "max-h-60 py-2 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
+      <div className={`fixed top-12 z-60 flex flex-col divide-gray-500 w-full py-1 bg-[#ecc35b] dark:bg-[#3b345e] text-black dark:text-white md:hidden transition-all duration-300 ease-in-out overflow-hidden ${visibility ? "max-h-60 py-2 opacity-100" : "max-h-0 py-0 opacity-0"}`}>
         <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/home"?"opacity-100 font-normal active:font-extralight":""}`} to='/home'>Home</Link>
         <hr></hr>
         <Link className={`mx-2 px-2 py-1 w-fit cursor-pointer opacity-70 font-extralight hover:font-normal ${location.pathname==="/feedback"?"opacity-100 font-normal active:font-extralight":""}`} to='/feedback'>Feedback</Link>

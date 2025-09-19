@@ -204,8 +204,8 @@ function MyNote() {
                     </div>}
                 </div>
                 <div className="flex flex-row-reverse gap-5 my-2">
-                    <button type="submit" className="px-5 py-1 text-white bg-green-500 rounded-md cursor-pointer">Save</button>
-                    <button type="button" className="px-5 py-1 text-white bg-[#e6aa05] rounded-md cursor-pointer" onClick={handleCancel}>Cancel</button>
+                    <button type="submit" className={`px-5 py-1 text-white bg-green-500 rounded-md ${loadingNotes?"cursor-not-allowed":"hover:bg-green-700 active:bg-green-400 cursor-pointer"}`}>Save</button>
+                    <button type="button" className={`px-5 py-1 text-white bg-[#e6aa05] rounded-md ${loadingNotes?"cursor-not-allowed":"hover:bg-yellow-700 active:bg-yellow-400 cursor-pointer"}`} onClick={handleCancel}>Cancel</button>
                     {content==="audio" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Audio</button>}
                     {content==="images" && <button type="button" disabled className="flex items-center gap-1 px-5 py-1 text-white bg-[#9d4edd] rounded-md cursor-pointer" onClick={handleCancel}><Paperclip size={20}/>Image</button>}
                 </div>
@@ -245,8 +245,8 @@ function MyNote() {
                 </div>}
             </div>
             <div className="flex flex-row-reverse gap-5 my-2">
-                <button className="px-5 py-1 text-white bg-rose-500 rounded-md cursor-pointer" onClick={handleDeleteNote}>Delete</button>
-                <button className="px-5 py-1 text-white bg-blue-500 rounded-md cursor-pointer" onClick={handleEdit}>Edit</button>
+                <button className={`px-5 py-1 text-white bg-rose-500 rounded-md ${loadingNotes?"cursor-not-allowed":"hover:bg-rose-700 active:bg-rose-400 cursor-pointer"}`} onClick={handleDeleteNote}>Delete</button>
+                <button className={`px-5 py-1 text-white bg-blue-500 rounded-md ${loadingNotes?"cursor-not-allowed":"hover:bg-blue-700 active:bg-blue-400 cursor-pointer"}`} onClick={handleEdit}>Edit</button>
             </div>
         </div>
         </>
