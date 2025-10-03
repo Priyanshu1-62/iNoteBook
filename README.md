@@ -12,7 +12,7 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 - [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 ---
 
-### ⚙️ Setup
+### ⚙️ Setup (Windows)
 1) Installation:
    - `git clone https://github.com/Priyanshu1-62/iNoteBook.git`
    - `cd iNoteBook`
