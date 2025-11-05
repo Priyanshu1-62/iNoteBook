@@ -15,7 +15,7 @@ RUN npm run build
 # Stage 2
 FROM nginx
 
-COPY --from=build /dist /usr/share/nginx/html
+COPY --from=build /inbclient/dist /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
