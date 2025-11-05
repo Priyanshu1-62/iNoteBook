@@ -1,5 +1,5 @@
 # Stage 1
-FROM node AS build
+FROM node:22-alpine AS build
 
 WORKDIR /inbclient
 
@@ -10,12 +10,12 @@ RUN npm install
 
 COPY . .
 
-VITE_BACKEND_URL=http://localhost:5000
+ENV VITE_BACKEND_URL=http://localhost:5000
 
 RUN npm run build
 
 # Stage 2
-FROM nginx
+FROM nginx:alpine
 
 COPY --from=build /inbclient/dist /usr/share/nginx/html
 
