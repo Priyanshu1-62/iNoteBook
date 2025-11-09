@@ -1,7 +1,7 @@
 # Stage 1
 FROM node:22-alpine AS build
 
-WORKDIR /inbclient
+WORKDIR /inotebook
 
 # Keep package layer seperated so Docker does not recreate it on every file change
 COPY package.json ./  
@@ -10,14 +10,12 @@ RUN npm install
 
 COPY . .
 
-ENV VITE_BACKEND_URL=http://localhost:5000
-
 RUN npm run build
 
 # Stage 2
 FROM nginx:alpine
 
-COPY --from=build /inbclient/dist /usr/share/nginx/html
+COPY --from=build /inotebook/dist /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
