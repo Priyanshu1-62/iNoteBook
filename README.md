@@ -77,6 +77,9 @@ Update: check out the live app [here](https://i-note-book-two.vercel.app) 🚀
 ---
 
 ### 🌍 Deployment
+- In order to tackle "Works on my machine" problem, and to make complex error prone setout convinient, the app is Dockerized and plublished as 2 images on Docker Hub.
+- The containerized app is deployed on AWS ECS Fargate, which is a serverless engine for containers.
+- I placed both the images in same task definition and created a Nginx reverse proxy server to distribute load between client and server based on request URL.
 - Frontend: [Vercel](https://i-note-book-two.vercel.app)
 - Backend: [Render](https://inotebook-server-8i8l.onrender.com)
 ---
