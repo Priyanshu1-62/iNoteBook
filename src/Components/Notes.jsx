@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
 import NoteContext from '../Contexts/noteContext';
 import NoteItem from './NoteItem';
 import AuthContext from '../Contexts/authContext';
@@ -64,9 +64,12 @@ function Notes() {
   }
 
   //Navigate to MyNote
-  const handleOpenMyNote = (id)=>{
+  // const handleOpenMyNote = (id)=>{
+  //   navigate(`/notes/${id}`);
+  // }
+  const handleOpenMyNote = useCallback((id)=>{
     navigate(`/notes/${id}`);
-  }
+  }, []);
   
   //Update Note
   const handleupdateNote = (id, data)=>{
